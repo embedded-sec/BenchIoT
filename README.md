@@ -53,7 +53,7 @@ Thus, all of these will be accessed from <lib/mbed-libs/FEATURES> using symlinks
 
 ## Quick Start to build an application
 
-** Note that (IoT2/iot2) is used here as a shortcut for BenchIoT files, script, and functions. It will be replaced soon. **
+**Note that (IoT2/iot2) is used here as a shortcut for BenchIoT files, script, and functions. It will be replaced soon.**
 
 See the list of options below and use the one that works for you. I will be using EVAL_F469NI as the board for the examples below. The same command should run when you change 
 that to your board. (e.g., DISCO_F407VG, K64F...etc)
@@ -270,3 +270,8 @@ It also uses libjpeg (http://libjpeg.sourceforge.net/), the details of which is 
 
 ## License
 Our modifications and tools are distributed using license in License.md
+
+
+## Questions? Issues? Errors? Help?
+
+Please raise an issue or contact me through email (nalmakhd and purdue domain) and I will answer you as soon as possible.
