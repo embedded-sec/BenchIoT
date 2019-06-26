@@ -1,0 +1,224 @@
+#==============================================================================#
+# This file specifies intentionally untracked files that git should ignore.
+# See: http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+#
+# This file is intentionally different from the output of `git svn show-ignore`,
+# as most of those are useless.
+#==============================================================================#
+
+#==============================================================================#
+# File extensions to be ignored anywhere in the tree.
+#==============================================================================#
+# Temp files created by most text editors.
+*~
+# Merge files created by git.
+*.orig
+# Byte compiled python modules.
+*.pyc
+# vim swap files
+.*.sw?
+.sw?
+#OS X specific files.
+.DS_store
+# object, dependency, txt, and elf files
+*.o
+*.d
+*.txt
+*.elf
+*.bin
+*.xml
+#==============================================================================#
+# Explicit files to ignore (only matches one).
+#==============================================================================#
+# Various tag programs
+/tags
+/TAGS
+/GPATH
+/GRTAGS
+/GSYMS
+/GTAGS
+.gitusers
+autom4te.cache
+cscope.files
+cscope.out
+autoconf/aclocal.m4
+autoconf/autom4te.cache
+# ignore build dir
+build/
+.idea/
+# ignore .hg files from external libraries
+.hg_archival*
+#==============================================================================#
+# mbed-os files to ignore (only matches one).
+#==============================================================================#
+*.py[cod]
+
+# Distribution dir
+dist
+
+# MANIFEST file
+MANIFEST
+doxygen_objdb_*
+
+# Private settings
+mbed_settings.py
+
+# Default Build Directory
+.build/
+BUILD/
+.mbed
+venv/
+
+# Eclipse Project Files
+.cproject
+.project
+.pydevproject
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+
+output.txt
+uVision Project/
+
+# Sublime Text Project Files
+*.sublime*
+
+*.bak
+debug.log
+
+# Ignore OS X Desktop Services Store files
+.DS_Store
+
+# Orig diff files
+*.orig
+
+# PyCharm
+*.idea
+
+# Cscope
+cscope.*
+
+# Visual Studio Code
+.vscode/
+
+
+#Atom Rope files
+.ropeproject
+*.a
+#==============================================================================#
+# Symlinks to ignore
+#==============================================================================#
+lib/mbed-libs/FEATURES/*
+os-lib/mbed-os/features/FEATURE_UVISOR/importer/TARGET_IGNORE/*
+lib/mbed-libs/FEATURES/FEATURE_UVISOR/importer/TARGET_IGNORE/*
+lib/mbed-libs/BAREMETAL_LWIP/lwip
+lib/IoT2/*
+os-lib/mbed-os/rtos/TARGET_CORTEX/mbed_boot.c
+os-lib/mbed-sdk/platform/mbed_sdk_boot.c
+os-lib/mbed-os/rtos/TARGET_CORTEX/rtx5/TARGET_RTOS_M4_M7/TOOLCHAIN_GCC/IoT2_irq_cm4f.S
+os-lib/mbed-os/features/netsocket/TCPSocket.cpp
+*auto_build.log
+*GettingStarted.html
+*.logicdata
+*_energy.csv
+*.ROPresiliency
+*.objdump
+
+# symlink files
+
+benchmarks/secure_data_SDK-benchmarks/smart_light/mbed-os
+benchmarks/secure_data_SDK-benchmarks/smart_light/securedata_main.cpp
+benchmarks/secure_data_SDK-benchmarks/bootloader/mbed-os
+benchmarks/secure_data_SDK-benchmarks/bootloader/securedata_main.cpp
+benchmarks/secure_data_SDK-benchmarks/connected_display/mbed-os
+benchmarks/secure_data_SDK-benchmarks/connected_display/securedata_main.cpp
+benchmarks/secure_data_SDK-benchmarks/smart_thermostat/mbed-os
+benchmarks/secure_data_SDK-benchmarks/smart_thermostat/securedata_main.cpp
+benchmarks/secure_data_SDK-benchmarks/smart_locker/mbed-os
+benchmarks/secure_data_SDK-benchmarks/smart_locker/securedata_main.cpp
+benchmarks/mbed-benchmarks/smart_light/mbed-os
+benchmarks/mbed-benchmarks/smart_light/main.cpp
+benchmarks/mbed-benchmarks/bootloader/mbed-os
+benchmarks/mbed-benchmarks/bootloader/main.cpp
+benchmarks/mbed-benchmarks/connected_display/mbed-os
+benchmarks/mbed-benchmarks/connected_display/main.cpp
+benchmarks/mbed-benchmarks/smart_thermostat/mbed-os
+benchmarks/mbed-benchmarks/smart_thermostat/main.cpp
+benchmarks/mbed-benchmarks/smart_locker/mbed-os
+benchmarks/mbed-benchmarks/smart_locker/main.cpp
+benchmarks/secure_data_OS-benchmarks/smart_light/mbed-os
+benchmarks/secure_data_OS-benchmarks/smart_light/securedata_main.cpp
+benchmarks/secure_data_OS-benchmarks/bootloader/mbed-os
+benchmarks/secure_data_OS-benchmarks/bootloader/securedata_main.cpp
+benchmarks/secure_data_OS-benchmarks/connected_display/mbed-os
+benchmarks/secure_data_OS-benchmarks/connected_display/securedata_main.cpp
+benchmarks/secure_data_OS-benchmarks/smart_thermostat/mbed-os
+benchmarks/secure_data_OS-benchmarks/smart_thermostat/securedata_main.cpp
+benchmarks/secure_data_OS-benchmarks/smart_locker/mbed-os
+benchmarks/secure_data_OS-benchmarks/smart_locker/securedata_main.cpp
+benchmarks/mbed-os-benchmarks/smart_light/mbed-os
+benchmarks/mbed-os-benchmarks/smart_light/main.cpp
+benchmarks/mbed-os-benchmarks/bootloader/mbed-os
+benchmarks/mbed-os-benchmarks/bootloader/main.cpp
+benchmarks/mbed-os-benchmarks/connected_display/mbed-os
+benchmarks/mbed-os-benchmarks/connected_display/main.cpp
+benchmarks/mbed-os-benchmarks/smart_thermostat/mbed-os
+benchmarks/mbed-os-benchmarks/smart_thermostat/main.cpp
+benchmarks/mbed-os-benchmarks/smart_locker/mbed-os
+benchmarks/mbed-os-benchmarks/smart_locker/main.cpp
+lib/mbed-libs/BAREMETAL_LWIP/lwip
+lib/mbed-libs/FEATURES/netsocket
+lib/mbed-libs/FEATURES/frameworks
+lib/mbed-libs/FEATURES/mbedtls
+lib/mbed-libs/FEATURES/FEATURE_COMMON_PAL
+lib/mbed-libs/FEATURES/unsupported
+lib/mbed-libs/FEATURES/FEATURE_UVISOR
+lib/mbed-libs/FEATURES/nanostack
+lib/mbed-libs/FEATURES/storage
+lib/mbed-libs/FEATURES/filesystem
+lib/mbed-libs/FEATURES/FEATURE_LWIP
+lib/mbed-libs/FEATURES/FEATURE_BLE
+lib/mbed-libs/FEATURES/TESTS
+lib/IoT2/IoT2_Config.c
+lib/IoT2/IoT2Lib.h
+lib/IoT2/IoT2_Config.h
+lib/IoT2/IoT2Lib.c
+os-lib/mbed-sdk/drivers/RawSerial.cpp
+os-lib/mbed-sdk/platform/Stream.cpp
+os-lib/mbed-os/features/netsocket/TCPSocket.cpp
+os-lib/mbed-os/drivers/RawSerial.cpp
+os-lib/mbed-os/rtos/TARGET_CORTEX/mbed_boot.c
+os-lib/mbed-os/rtos/TARGET_CORTEX/rtx5/TARGET_RTOS_M4_M7/TOOLCHAIN_GCC/irq_cm4f.S
+os-lib/mbed-os/platform/mbed_retarget.cpp
+os-lib/mbed-os/platform/mbed_sdk_boot.c
+os-lib/mbed-os/platform/Stream.cpp
+os-lib/mbed-os/tools/export/makefile/Makefile.tmpl
+os-lib/mbed-os/tools/profiles/iot2_debug.json
+os-lib/mbed-os/targets/TARGET_STM/TARGET_STM32F4/device/stm32f4xx_hal_cortex.c
