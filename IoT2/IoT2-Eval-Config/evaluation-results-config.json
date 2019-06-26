@@ -1,0 +1,58 @@
+{
+    "RESULTS_DIR": "/results",
+    "RESULTS_SUBDIRS_STRUCTURE":{
+      "DIRS": ["/baremetal_results", "/os_results"],
+      "SUBDIRS":{
+          "DIRS" : ["/baseline", "/mytool"],
+          "SUBDIRS" : {
+              "DIRS" : ["/bins", "/analysis_files", "/metrics_results", "/benchmark_verification"],
+              "SUBDIRS" : "NONE"
+          }
+      }
+    },
+    "BENCHMARKS_ROOT_DIR": "/benchmarks",
+    "BASELINE_BENCH_DIR": "/baseline",
+    "BENCH_RESULT_TYPES": ["/baremetal_results", "/os_results"],
+    "BAREMETAL_BENCH_TOOLS": ["/secure_data_SDK"],
+    "OS_BENCH_TOOLS": ["/secure_data_OS"],
+    "BENCH_DIR_SUBDIRS": ["/bins", "/analysis-files", "/metrics_results", "/benchmark_verification"],
+    "BAREMETAL_RESULTS_DIR": "/baremetal_results",
+    "OS_RESULTS_DIR": "/os_results",
+    "BINS_DIR" : "/bins/",
+    "BASELINE_DIR": "/baseline",
+    "MYTOOL": "/mytool",
+    "BUILD_DIR": "/BUILD",
+    "METRICS_RESULTS_DIR": "/metrics_results/",
+    "ANALYSIS_FILES_DIR": "/analysis-files/",
+    "BENCHMARK_VERIFICATION_DIR": "/benchmark_verification/",
+    "BOARD": "EVAL_F469NI",
+    "OS_BENCHMARKS_DIR": "/benchmarks/mbed-os-benchmarks",
+    "BAREMETAL_BENCHMARKS_DIR": "/benchmarks/mbed-benchmarks",
+    "METRIC_CATAGORIES":{
+        "SECURITY_METRICS": ["TotalPriv_cycles", "PrivThread_cycles", "SVC_cycles", "TotalPriv_code",
+            "ROP_gadgets", "Indirect_calls", "Max_code_ratio", "Max_data_ratio"],
+        "PERFORMANCE_METRICS": ["TotalRuntime_cycles", "Sleep_cycles", "IOBound_cycles", "CPU_Cycles",
+            "Init_cycles", "IoT2Overhead_cycles"],
+        "FLASH_METRICS": ["Total_FLASH", "Executable_code"],
+        "RAM_METRICS": ["Total_RAM", "Stack_heap_usage"],
+        "ENERGY_METRICS": ["Total_energy"],
+        "OTHER_METRICS": ["ISR_cycles", "SysTick_cycles",  "PendSV_cycles","EXCCNT_cycles"]
+    },
+    "DYNAMIC_MEMRORY":{
+        "STACK_TOP": "0x20050000",
+        "STACK_SIZE": 258596,
+        "HEAP_START": "0x20010ddc",
+        "HEAP_SIZE": 258596
+    },
+    "BENCHMARK_END_BREAKPOINT": "*iot2EndBenchmark",
+    "IOT2_SERIAL_PORT" : "/dev/ttyACM0",
+    "DEBUGGER": "$ARM_GDB_PYTHON",
+    "BOARD_IP": "192.168.0.10",
+    "PC_IP": "192.168.0.11",
+    "BOARD_PORT": 1337,
+    "BOOTLOADER_BIN_FILE": "YOUR_FILE",
+    "MANUAL_BENCH_LIST": ["smart_locker", "smart_light"],
+    "BASELINE_BENCHMARKS" : 0,
+    "OS_BENCHMARKS": 1,
+    "ITERATIONS" : 5
+}

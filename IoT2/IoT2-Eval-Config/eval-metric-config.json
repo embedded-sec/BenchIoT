@@ -1,0 +1,16 @@
+{
+    "FLASH_METRICS_SETUP": {
+        "START_ADDR": "0x08000000",
+        "END_ADDR": "0x08FFFFFF"
+    },
+    "RAM_METRICS_SETUP": {
+        "START_ADDR": "0x10000000",
+        "END_ADDR": "0x3FFFFFFF"
+    },
+    "ISOLATED_DATA_REGIONS": [".secure", ".SECURE_DATA"],
+    "EXEC_CODE_REGIONS" : [".text", ".CODE", ".SECURE_REGION"],
+    "STACK_MEASUREMENT_SETUP": {
+        "STACK_START": "0x10000000",
+        "STACK_END": "0x20050000"
+    }
+}
