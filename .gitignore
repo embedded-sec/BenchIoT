@@ -145,7 +145,6 @@ os-lib/mbed-sdk/platform/mbed_sdk_boot.c
 os-lib/mbed-os/rtos/TARGET_CORTEX/rtx5/TARGET_RTOS_M4_M7/TOOLCHAIN_GCC/IoT2_irq_cm4f.S
 os-lib/mbed-os/features/netsocket/TCPSocket.cpp
 *auto_build.log
-*GettingStarted.html
 *.logicdata
 *_energy.csv
 *.ROPresiliency

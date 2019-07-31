@@ -28,7 +28,7 @@ sys.path.insert(0, ROOT)
 from tools.build_api import prepare_toolchain
 from tools.build_api import scan_resources
 from tools.toolchains import Resources
-from tools.export import lpcxpresso, ds5_5, iar, makefile, epoxy, scfi
+from tools.export import lpcxpresso, ds5_5, iar, makefile
 from tools.export import embitz, coide, kds, simplicity, atmelstudio, mcuxpresso
 from tools.export import sw4stm32, e2studio, zip, cmsis, uvision, cdt, vscode
 from tools.export import gnuarmeclipse
@@ -44,8 +44,6 @@ EXPORTERS = {
     'make_armc5': makefile.Armc5,
     'make_armc6': makefile.Armc6,
     'make_iar': makefile.IAR,
-    'epoxy_make': epoxy.GccArm,
-    'scfi_make': scfi.GccArm,
     'ds5_5': ds5_5.DS5_5,
     'iar': iar.IAR,
     'embitz' : embitz.EmBitz,

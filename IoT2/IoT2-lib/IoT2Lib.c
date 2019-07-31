@@ -688,7 +688,7 @@ __attribute__((naked,used)) void iot2SVCHandler(void){
         "ldr r0,=origLR\n"                   // get origLR addr [2]
         "str lr,[r0]\n"                      // save LR in origLR [2]
         "bl iot2StarsttRecordExceptionMetric\n"// start measurement [1+P = 4]
-#if ((IoT2_OS_BENCHMARKS == 0 )
+#if ((IoT2_OS_BENCHMARKS == 0 ))
         "mrs r0,msp\n"                       // load sp [2]
         "ldr r0,[r0, #44]\n"                 // load pc [2]
 #else
