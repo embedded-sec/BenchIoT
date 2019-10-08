@@ -544,12 +544,3 @@ class EndBreakpoint(gdb.Breakpoint):
             close_gdb()
         return False
 
-class BOARD_BUG_BKPT(gdb.Breakpoint):
-    """
-    This breakpoint is because of bug specific to the boot sequence
-    of one of the boards. It just resets the application so that
-    application boots correctly.
-    """
-    def stop(self):
-        mrh()
-        return False

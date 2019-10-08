@@ -96,9 +96,7 @@ BIN_RESULT_FILE = BIN_BENCH_CONFIG_RES_DIR+ BIN_BENCH_NAME + iot2_settings.JSON_
 BIN_HEAP_START = get_bench_heap_start()
 
 gdb_helpers.cl()
-# only enable this breakpoint if needed
-if iot2_settings.BOARD_BUG_BKPT == 1:
-    board_bug_bkpt = gdb_helpers.BOARD_BUG_BKPT("*0x1fff261e")
+
 
 bp = gdb_helpers.EndBreakpoint("*iot2EndBenchmark", type=gdb.BP_BREAKPOINT)
 bp.config(iot2_settings.IOT2_ITERATIONS, iot2_settings.STACK_TOP, BIN_HEAP_START, #iot2_settings.STACK_SIZE, #replaced stacksize with heap start
