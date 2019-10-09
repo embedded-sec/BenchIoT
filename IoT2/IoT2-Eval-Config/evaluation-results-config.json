@@ -54,5 +54,5 @@
     "MANUAL_BENCH_LIST": ["smart_locker", "smart_light"],
     "BASELINE_BENCHMARKS" : 0,
     "OS_BENCHMARKS": 1,
-    "ITERATIONS" : 5
+    "ITERATIONS" : 3
 }

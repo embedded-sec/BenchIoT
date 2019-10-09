@@ -1,6 +1,15 @@
 import pandas
 import os
+import iot2_settings
+import iot2_measure_static_flash_and_ram as iot2_helper
+from collections import OrderedDict
 
+
+
+MAX_NAME = "MAX"
+MEAN_NAME = "MEAN"
+MIN_NAME = "MIN"
+ANALOG_PERIODS = "# of measurements"
 
 def get_stats_for_active(power, periods):
     '''
@@ -76,8 +85,8 @@ def get_active_periods(digital_time, digital):
 if __name__ == '__main__':
     from argparse import ArgumentParser
     p = ArgumentParser()
-    p.add_argument("-c", "--capture", required=True,
-                   help="CSV of Salea Logic Pro Export")
+    #p.add_argument("-c", "--capture", required=True,
+    #               help="CSV of Salea Logic Pro Export")
     p.add_argument("--vcc_channel", default=1, type=int,
                    help="Column that contains VCC readings")
     p.add_argument("--current_channel", default=2, type=int,
@@ -89,22 +98,62 @@ if __name__ == '__main__':
     p.add_argument("--gain", default=50.0, type=float,
                    help="Gain to convert current reading to AMPS")
 
+    p.add_argument('-bc', '--benchmark-config', dest='benchmark_configuration', type=str,
+                        help="Flag to set the benchmark configuration to use from iot2_settings.BUILD_OPTIONS. if"
+                             "not set, then all configurations are built."
+                        , default=iot2_settings.ALL_STR)
+
+
+
     args = p.parse_args()
-    data = pandas.read_csv(args.capture)
-    vcc = data.get(data.columns[args.vcc_channel])
-    mA = data.get(data.columns[args.current_channel]) / args.gain
-    analog_time =  data.get(data.columns[0])
-    digital_time = data.get(data.columns[args.digital_time_column])
-    digital_sig = data.get(data.columns[args.digital_sig])
+    # path to metrics directory
+    metrics_path = str(iot2_settings.RESULTS_DIR_PATH +
+                       iot2_settings.BUILD_OPTIONS[args.benchmark_configuration][iot2_settings.BENCH_TYPE] +
+                       iot2_settings.BUILD_OPTIONS[args.benchmark_configuration][iot2_settings.BENCH_CONFIG_RES_DIR] +
+                       iot2_settings.METRICS_RESULTS_DIR)
 
-    sample_period = analog_time[1]-analog_time[0]
+    power_res_file = metrics_path + "power_results--"+ str(args.benchmark_configuration) +iot2_settings.CSV_EXT
 
-    power = vcc * mA
+    bench_name_list = []
+    energy_csv_file_list = []
+    power_result_dict = OrderedDict()
+    power_result_dict[MAX_NAME] = []
+    power_result_dict[MEAN_NAME] = []
+    power_result_dict[MIN_NAME] = []
+    power_result_dict[ANALOG_PERIODS] = []
 
-    digital_periods = get_active_periods(digital_time, digital_sig)
-    analog_periods = get_indexes_for_active_periods(analog_time, digital_periods)
-    maximum, minimum, average = get_stats_for_active(power, analog_periods)
+    energy_csv_file_list = iot2_helper.gen_filelist(metrics_path, energy_csv_file_list, iot2_settings.CSV_EXT)
+    for capture_file in energy_csv_file_list:
+        
+        bench_name = iot2_helper.get_filename(capture_file)
+        bench_name_list.append(bench_name)
+
+        data = pandas.read_csv(capture_file)#args.capture)
+        vcc = data.get(data.columns[args.vcc_channel])
+        mA = data.get(data.columns[args.current_channel]) / args.gain
+        analog_time =  data.get(data.columns[0])
+        digital_time = data.get(data.columns[args.digital_time_column])
+        digital_sig = data.get(data.columns[args.digital_sig])
+
+        sample_period = analog_time[1]-analog_time[0]
+
+        power = vcc * mA
+
+        digital_periods = get_active_periods(digital_time, digital_sig)
+        analog_periods = get_indexes_for_active_periods(analog_time, digital_periods)
+        maximum, minimum, average = get_stats_for_active(power, analog_periods) 
+
+        # update power results dictionary
+        power_result_dict[MAX_NAME].append(maximum)
+        power_result_dict[MEAN_NAME].append(average)
+        power_result_dict[MIN_NAME].append(minimum)
+        power_result_dict[ANALOG_PERIODS].append(len(analog_periods))
+        
+        #filename = os.path.split(capture_file)[-1].strip()
+        #print('%s, %f, %f, %f, %i'%(filename,maximum,  average, minimum, len(analog_periods) ))
     
-    filename = os.path.split(args.capture)[-1].strip()
-    print('%s, %f, %f, %f, %i'%(filename,maximum,  average, minimum, len(analog_periods) ))
+    power_df = pandas.DataFrame(power_result_dict, index=bench_name_list)
 
+    power_df.to_csv(power_res_file)
+    print("[+] Power measurment for [%s] benchmarks have been written to: %s"
+        % (args.benchmark_configuration, power_res_file))

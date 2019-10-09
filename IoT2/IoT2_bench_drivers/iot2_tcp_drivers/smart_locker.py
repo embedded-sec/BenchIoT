@@ -69,12 +69,12 @@ def send_smart_locker_inquiries(clnt_socket, fd):
         # check that all msg has been sent
         if bytes_sent != len(server_msg):
             print("[-] SMART-LOCKER ERROR: bytes_sent != server_msg")
-        print("*"*80)
-        print("sent: %s" % server_msg)
+        #print("*"*80)
+        #print("sent: %s" % server_msg)
         # recv response and log it to result file
         inq_response = clnt_socket.recv(PACKET_SIZE)
-        print("recv %s" %inq_response)
-        print("*" * 80)
+        #print("recv %s" %inq_response)
+        #print("*" * 80)
         inq_response = inq_response.replace('\0', '')
         fd.write(inq_response)
     return
@@ -84,9 +84,9 @@ def bench_recv(clnt_socket, packet_size, fd):
     msg_size = 0
     #while msg_size != packet_size:
     msg = clnt_socket.recv(packet_size)
-    print("."*20)
-    print(len(msg))#msg.split())
-    print("."*20)
+    #print("."*20)
+    #print(len(msg))#msg.split())
+    #print("."*20)
     msg = msg.replace('\0', '')
     if msg == IOT2_END_TCP_DRIVER_MSG:
         line_block = "*"*80 + "\n" + "*"*80 + "\n" + "*"*80 + "\n"
@@ -98,7 +98,7 @@ def bench_recv(clnt_socket, packet_size, fd):
 
 
 def bench_tcp_driver(host_ip, port, verification_file, benchmark_type):
-    print("host_ip = %s, port= %s" %(host_ip, port))
+    #print("host_ip = %s, port= %s" %(host_ip, port))
     clnt_flag = True
     attempts = 0
     # open results file
@@ -110,7 +110,7 @@ def bench_tcp_driver(host_ip, port, verification_file, benchmark_type):
             client.settimeout(10)
             client.connect((host_ip, port))
             client.settimeout(None)
-            print("connected!")
+            print("[+] TCP driver connected!")
             if benchmark_type == 0:
                 client.send("ack\0")
                 client.send("ack\0")
@@ -125,15 +125,15 @@ def bench_tcp_driver(host_ip, port, verification_file, benchmark_type):
                 response, response_size = bench_recv(client, PACKET_SIZE, fd)
                 if benchmark_type == 0:
                     client.send("ack\0")
-                print("cntr[%d]" % packet_cntr)
+                #print("cntr[%d]" % packet_cntr)
                 packet_cntr += 1
                 # fot the smart locker, the benchmark expects inquiries after 100
                 # packages have been dropped
-                print("_" * 80)
-                print("CLIENT(%d): %s" % (response_size, response))
-                print("_" * 80)
+                #print("_" * 80)
+                #print("CLIENT(%d): %s" % (response_size, response))
+                #print("_" * 80)
                 if packet_cntr == NUM_PACKAGES:
-                    print("@send inq [%d]" % number_of_packets)
+                    #print("@send inq [%d]" % number_of_packets)
                     send_smart_locker_inquiries(client, fd)
                 # check if it is time to send request full file log
             client.close()
@@ -169,9 +169,7 @@ def net_driver(host_ip, port, iterations, verification_file_path, bootloader_fil
                     iot2_synch_obj.set_tcp_proc_flag()
                     print("TCP FLAG IS SET!!")
         print("*"*80)
-        print("*"*80)
-        print("TCP driver started, iter_cntr = %d, ost_ip = %s, port= %s" % (iteration_cntr, host_ip, port))
-        print("*"*80)
+        print("TCP driver started, iter_cntr = %d, host_ip = %s, port= %s" % (iteration_cntr, host_ip, port))
         print("*"*80)
         bench_tcp_driver(host_ip, port, verification_file_path, benchmark_type)
         iteration_cntr += 1
