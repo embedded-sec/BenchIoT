@@ -15,10 +15,12 @@ MBED_OS='os-lib/mbed-os'
 MBED_FEATURES='os-lib/mbed-os/features'
 BENCHMARKS='benchmarks'
 OS_BENCHMARKS='benchmarks/mbed-os-benchmarks'
+EXAMPLES='examples'
 MBED_OS_DIR=${CURR_DIR}/${MBED_OS}
 FEATURES_DIR=${CURR_DIR}/${MBED_FEATURES}
 BENCHMARKS_DIR=${CURR_DIR}/${BENCHMARKS}
 OS_BENCHMARKS_DIR=${CURR_DIR}/${OS_BENCHMARKS}
+EXAMPLES_DIR=${CURR_DIR}/${EXAMPLES}
 MBED_LIB_DIR='lib/mbed-libs/FEATURES'
 LIB_DIR=${CURR_DIR}/${MBED_LIBS}
 
@@ -85,6 +87,27 @@ for benchmark_type in ${BENCHMARKS_DIR}/*; do
         done
     fi
 done
+
+
+# setting symlinks for example directory
+for benchmark_type in ${EXAMPLES_DIR}/*; do
+
+    if [ -d "$benchmark_type" ]; then
+        echo "[+] name: "${benchmark_type}
+
+        for benchmark in ${benchmark_type}/*; do
+            if [ -d "$benchmark" ]; then
+                if ${SYM_LINK} ${MBED_OS_DIR}/ ${benchmark}/mbed-os
+                then
+                    echo "          [+] Added mbed-os symlink in:"${benchmark}
+                else
+                    echo "          [-] ERROR: Failed to add mbed-os symlink in:"${benchmark}
+                fi
+            fi
+        done
+    fi
+done
+
 
 
 echo "===---------------------  Symlinks: DONE  ---------------------==="

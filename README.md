@@ -258,6 +258,13 @@ on the resulting csv file
 ./get_all_power.sh  <energy_csv_results_file>
 ```
 
+##  Adding Customized applications or metrics
+
+- To use the BenchIoT framework with your own application, 
+please refer to the following [example](examples/template_benchmarks/blinky-example/Building_custom_application.md)
+- To add a customized metric(s), please check [This tutorial](Adding_custom_metrics.md)
+
+
 ## Thanks
 This repo includes a version of mbed-os (5.6.5) and its libraries, which use the Apache-2.0 license. Their repo can be found at https://github.com/ARMmbed/mbed-os
 

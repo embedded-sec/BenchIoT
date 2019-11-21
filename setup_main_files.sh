@@ -14,6 +14,8 @@
 CURR_DIR=`dirname \`readlink -f $0\``
 MBED_OS='os-lib/mbed-os'
 MBED_FEATURES='os-lib/mbed-os/features'
+EXAMPLES='examples'
+EXAMPLES_DIR=${CURR_DIR}/${EXAMPLES}
 BENCHMARKS='benchmarks'
 OS_BENCHMARKS='benchmarks/mbed-os-benchmarks'
 SECURE_DATA_OS_BENCHMARKS='benchmarks/secure_data_OS-benchmarks'
@@ -52,7 +54,7 @@ echo "-------------------------------------------------------------------------"
 echo "[*] Setting symlinks to main files for each benchmark"
 
 
-# Loop through the epoxy benchmarks and create mbed-os symlinks
+# Loop through the benchmarks and create mbed-os symlinks
 for benchmark_type in ${BENCHMARKS_DIR}/*; do
 
     if [ -d "$benchmark_type" ]; then
@@ -73,9 +75,9 @@ for benchmark_type in ${BENCHMARKS_DIR}/*; do
                     # add symlink
                     if ${SYM_LINK} ${SECURE_DATA_MAIN_FILE} ${benchmark}/securedata_main.cpp
                     then
-                        echo "      [+] Added symlink for uvisor_main.cpp at: ${benchmark}/uvisor_main.cpp"
+                        echo "      [+] Added symlink for main.cpp at: ${benchmark}/main.cpp"
                     else
-                        echo "      [-] ERROR: Failed to add symlink for uvisor_main.cpp at: ${benchmark}/securedata_main.cpp"
+                        echo "      [-] ERROR: Failed to add symlink for main.cpp at: ${benchmark}/main.cpp"
                     fi
                 fi
             done
@@ -96,9 +98,9 @@ for benchmark_type in ${BENCHMARKS_DIR}/*; do
                     # add symlink
                     if ${SYM_LINK} ${SECURE_DATA_MAIN_FILE} ${benchmark}/securedata_main.cpp
                     then
-                        echo "      [+] Added symlink for uvisor_main.cpp at: ${benchmark}/uvisor_main.cpp"
+                        echo "      [+] Added symlink for main.cpp at: ${benchmark}/main.cpp"
                     else
-                        echo "      [-] ERROR: Failed to add symlink for uvisor_main.cpp at: ${benchmark}/securedata_main.cpp"
+                        echo "      [-] ERROR: Failed to add symlink for main.cpp at: ${benchmark}/main.cpp"
                     fi
                 fi
             done
@@ -126,6 +128,26 @@ for benchmark_type in ${BENCHMARKS_DIR}/*; do
             done
         fi
 
+    fi
+done
+
+
+# create main symlink for example templates
+for benchmark_type in ${EXAMPLES_DIR}/*; do
+
+    if [ -d "$benchmark_type" ]; then
+        echo "[+] name: "${benchmark_type}
+
+        for benchmark in ${benchmark_type}/*; do
+            if [ -d "$benchmark" ]; then
+                if ${SYM_LINK} ${GENERAL_MAIN_FILE} ${benchmark}/main.cpp
+                then
+                    echo "          [+] Added main.cpp symlink in:"${benchmark}
+                else
+                    echo "          [-] ERROR: Failed to add main.cpp symlink in:"${benchmark}
+                fi
+            fi
+        done
     fi
 done
 
